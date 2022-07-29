@@ -1,64 +1,50 @@
 import { gql } from "@apollo/client";
 
-// TODO
 export const LOGIN_USER = gql`
-  mutation loginUser($thoughtText: String!, $thoughtAuthor: String!) {
-    loginUser(thoughtText: $thoughtText, thoughtAuthor: $thoughtAuthor) {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
+  mutation loginUser($email: String!, $password: String!) {
+    loginUser(email: $email, password: $password) {
+      user {
+        username
+        email
       }
+      token
     }
   }
 `;
 
-// TODO
 export const ADD_USER = gql`
-  mutation addUser($thoughtText: String!, $thoughtAuthor: String!) {
-    addUser(thoughtText: $thoughtText, thoughtAuthor: $thoughtAuthor) {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
+  mutation addUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
+      user {
+        username
+        email
       }
+      token
     }
   }
 `;
 
-// TODO
 export const SAVE_BOOK = gql`
-  mutation saveBook($thoughtText: String!, $thoughtAuthor: String!) {
-    saveBook(thoughtText: $thoughtText, thoughtAuthor: $thoughtAuthor) {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
+  mutation saveBook($_id: String!, $bookId: String!) {
+    saveBook(_id: $_id, bookId: $bookId) {
+      user {
         _id
-        commentText
+        books {
+          bookId
+        }
       }
     }
   }
 `;
 
-// TODO
 export const REMOVE_BOOK = gql`
-  mutation removeBook($thoughtText: String!, $thoughtAuthor: String!) {
-    removeBook(thoughtText: $thoughtText, thoughtAuthor: $thoughtAuthor) {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
+  mutation removeBook($_id: String!, $bookId: String!) {
+    removeBook(_id: $_id, bookId: $bookId) {
+      user {
         _id
-        commentText
+        books {
+          bookId
+        }
       }
     }
   }
