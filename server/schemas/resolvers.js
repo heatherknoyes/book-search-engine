@@ -16,9 +16,9 @@ const resolvers = {
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
-      // if (!user) {
-      //   return res.status(400).json({ message: "Something is wrong!" });
-      // }
+      if (!user) {
+        return "Something is wrong!";
+      }
       const token = signToken(user);
       return { token, user };
     },
@@ -38,18 +38,18 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    saveBook: async (parent, { user, body }, context) => {
+    saveBook: async (parent, { user, savedBooks }, context) => {
       const updatedUser = await User.findOneAndUpdate(
         { _id: context.user._id },
-        { $addToSet: { savedBooks: context.body } },
+        { $addToSet: { savedBooks: context.savedBooks } },
         { new: true, runValidators: true }
       );
       return updatedUser;
     },
-    deleteBook: async (parent, { user, params }, context) => {
+    deleteBook: async (parent, { user, savedBooks }, context) => {
       const updatedUser = await User.findOneAndUpdate(
         { _id: context.user._id },
-        { $pull: { savedBooks: { bookId: context.params.bookId } } },
+        { $pull: { savedBooks: { bookId: context.savedBooks.bookId } } },
         { new: true }
       );
       if (!updatedUser) {
