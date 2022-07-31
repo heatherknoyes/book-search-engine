@@ -38,18 +38,18 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    saveBook: async (parent, { user, savedBooks }, context) => {
+    saveBook: async (parent, { bookToSave, userId }, context) => {
       const updatedUser = await User.findOneAndUpdate(
-        { _id: context.user._id },
-        { $addToSet: { savedBooks: context.savedBooks } },
+        { _id: userId },
+        { $addToSet: { savedBooks: bookToSave } },
         { new: true, runValidators: true }
       );
       return updatedUser;
     },
     deleteBook: async (parent, { user, savedBooks }, context) => {
       const updatedUser = await User.findOneAndUpdate(
-        { _id: context.user._id },
-        { $pull: { savedBooks: { bookId: context.savedBooks.bookId } } },
+        { _id: user._id },
+        { $pull: { savedBooks: { bookId: savedBooks.bookId } } },
         { new: true }
       );
       if (!updatedUser) {

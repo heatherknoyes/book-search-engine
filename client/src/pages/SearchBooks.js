@@ -75,10 +75,12 @@ const SearchBooks = () => {
     }
 
     try {
-      console.log({ bookToSave, token });
-      const response = await saveBook({ variables: { bookToSave } });
-      // promise was rejected because the mutation failed
-      console.log(response);
+      const profile = Auth.getProfile();
+      const userId = profile.data._id;
+
+      const response = await saveBook({
+        variables: { bookToSave, userId },
+      });
 
       if (!response) {
         return "something went wrong!";
