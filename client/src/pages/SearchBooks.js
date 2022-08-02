@@ -75,11 +75,8 @@ const SearchBooks = () => {
     }
 
     try {
-      const profile = Auth.getProfile();
-      const userId = profile.data._id;
-
       const response = await saveBook({
-        variables: { bookToSave, userId },
+        variables: { bookToSave },
       });
 
       if (!response) {
