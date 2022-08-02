@@ -23,16 +23,18 @@ const SavedBooks = () => {
   // this exists here which looks good
   // const profile = Auth.getProfile();
 
-  console.log(GET_ME);
+  // console.log(GET_ME);
 
-  console.log(useQuery(GET_ME));
+  // console.log(useQuery(GET_ME));
 
   const { loading, userData, setUserData } = useQuery(GET_ME);
 
+  // undefined
   // console.log(userData);
 
   // use this to determine if `useEffect()` hook needs to run again
-  const userDataLength = Object.keys(userData).length;
+  const userDataLength = 0;
+  // const userDataLength = Object.keys(userData).length;
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
 
   // useEffect(() => {

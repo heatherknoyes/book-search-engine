@@ -4,7 +4,7 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
-      console.log("I GOT HERE");
+      // look at the most recent folder to see if you can find anything there
       console.log(context);
       return User.findOne({
         $or: [{ _id: context.user._id }, { username: context.user.username }],
@@ -45,10 +45,10 @@ const resolvers = {
       );
       return updatedUser;
     },
-    deleteBook: async (parent, { user, savedBooks }, context) => {
+    deleteBook: async (parent, { bookId }, context) => {
       const updatedUser = await User.findOneAndUpdate(
-        { _id: user._id },
-        { $pull: { savedBooks: { bookId: savedBooks.bookId } } },
+        { _id: context.user._id },
+        { $pull: { savedBooks: { bookId: bookId } } },
         { new: true }
       );
       if (!updatedUser) {
