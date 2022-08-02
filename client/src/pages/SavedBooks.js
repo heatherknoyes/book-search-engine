@@ -15,26 +15,19 @@ import { removeBookId } from "../utils/localStorage";
 import { REMOVE_BOOK } from "../utils/mutations";
 
 const SavedBooks = () => {
+  let userDataLength = 0;
   // const [userData, setUserData] = useState({});
 
   // Supposed to use this instead of Auth.getProfile??
   // const { _id, username } = useParams();
 
-  // this exists here which looks good
-  // const profile = Auth.getProfile();
-
-  // console.log(GET_ME);
-
-  // console.log(useQuery(GET_ME));
-
-  const { loading, userData, setUserData } = useQuery(GET_ME);
-
-  // undefined
-  // console.log(userData);
+  const { loading, data } = useQuery(GET_ME);
+  const userData = data;
 
   // use this to determine if `useEffect()` hook needs to run again
-  const userDataLength = 0;
-  // const userDataLength = Object.keys(userData).length;
+  if (userData) {
+    userDataLength = 1;
+  }
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
 
   // useEffect(() => {
@@ -83,7 +76,7 @@ const SavedBooks = () => {
       }
 
       const updatedUser = await response.json();
-      setUserData(updatedUser);
+      // setUserData(updatedUser);
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
@@ -105,14 +98,14 @@ const SavedBooks = () => {
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${
-                userData.savedBooks.length === 1 ? "book" : "books"
+          {userData.me.savedBooks.length
+            ? `Viewing ${userData.me.savedBooks.length} saved ${
+                userData.me.savedBooks.length === 1 ? "book" : "books"
               }:`
             : "You have no saved books!"}
         </h2>
         <CardColumns>
-          {userData.savedBooks.map((book) => {
+          {userData.me.savedBooks.map((book) => {
             return (
               <Card key={book.bookId} border="dark">
                 {book.image ? (
