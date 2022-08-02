@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Jumbotron,
   Container,
@@ -17,11 +17,19 @@ import { REMOVE_BOOK } from "../utils/mutations";
 const SavedBooks = () => {
   // const [userData, setUserData] = useState({});
 
-  const { _id, username } = useParams();
+  // Supposed to use this instead of Auth.getProfile??
+  // const { _id, username } = useParams();
 
-  const { loading, userData, setUserData } = useQuery(GET_ME, {
-    variables: { _id: _id, username: username },
-  });
+  // this exists here which looks good
+  // const profile = Auth.getProfile();
+
+  console.log(GET_ME);
+
+  console.log(useQuery(GET_ME));
+
+  const { loading, userData, setUserData } = useQuery(GET_ME);
+
+  // console.log(userData);
 
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
@@ -36,14 +44,19 @@ const SavedBooks = () => {
   //         return false;
   //       }
 
-  //       const response = await getMe(token);
+  //       const user = Auth.getProfile();
+
+  //       const response = await me(user.data.username, user.data._id);
 
   //       if (!response.ok) {
-  //         throw new Error('something went wrong!');
+  //         throw new Error("something went wrong!");
   //       }
 
-  //       const user = await response.json();
-  //       setUserData(user);
+  //       console.log("THIS IS WHAT YOU ARE RETURNING");
+  //       console.log(response);
+
+  //       // const user = await response.json();
+  //       setUserData(response);
   //     } catch (err) {
   //       console.error(err);
   //     }

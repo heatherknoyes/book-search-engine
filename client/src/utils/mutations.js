@@ -24,6 +24,7 @@ export const ADD_USER = gql`
   }
 `;
 
+// need to get rid of the userId and use the context parameter
 export const SAVE_BOOK = gql`
   mutation saveBook($bookToSave: SaveBookInput!, $userId: String!) {
     saveBook(bookToSave: $bookToSave, userId: $userId) {
@@ -42,9 +43,10 @@ export const SAVE_BOOK = gql`
   }
 `;
 
+// will need to use the userid from the context in order for the delete to work
 export const REMOVE_BOOK = gql`
-  mutation removeBook($bookId: String!, $token: String!) {
-    removeBook(bookId: $bookId, token: $token) {
+  mutation removeBook($bookId: String!) {
+    removeBook(bookId: $bookId) {
       _id
       username
       email
