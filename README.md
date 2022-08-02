@@ -2,7 +2,7 @@
 
 [![License: Apache](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-The motivation for this project was to create a PWA. By using webpack I created service workers and implemented put and get methods in order to save a users edits to a page. In the future I would like for the page to be more interactive and be able to save and open previous files.
+The motivation for this project was to refactor an API application into a React application. I utilised GraphQL, and an authentication middleware in order to pass information back and forth in between the front end and the back end. In the future I would like to adjust the code overall to be more readable.
 
 [Functioning Application Link](https://powerful-journey-60614.herokuapp.com/)
 
@@ -25,7 +25,7 @@ Run the following command in order to be able to install the package for this co
 
 To run this code from the parent directory after setup use the following command:
 
-    npm start
+    npm run develop
 
 ## License
 
