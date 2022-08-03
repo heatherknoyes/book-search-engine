@@ -6,6 +6,8 @@ The motivation for this project was to refactor an API application into a React 
 
 [Functioning Application Link](https://powerful-journey-60614.herokuapp.com/)
 
+![Application Screenshot](./application.png)
+
 ## Table of Contents
 
 - [Installation](#installation)
