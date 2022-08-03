@@ -27,8 +27,6 @@ const SavedBooks = () => {
     userDataLength = 1;
   }
 
-  console.log(data);
-
   // useEffect(() => {
   //   const getUserData = async () => {
   //     try {

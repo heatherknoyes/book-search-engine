@@ -48,9 +48,12 @@ const resolvers = {
         { $pull: { savedBooks: { bookId: bookId } } },
         { new: true }
       );
+
+      console.log(updatedUser);
       if (!updatedUser) {
         return "Couldn't find user with this id!";
       }
+      console.log(updatedUser);
       return updatedUser;
     },
   },
