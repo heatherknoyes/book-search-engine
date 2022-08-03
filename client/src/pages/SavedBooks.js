@@ -44,9 +44,6 @@ const SavedBooks = () => {
   //         throw new Error("something went wrong!");
   //       }
 
-  //       console.log("THIS IS WHAT YOU ARE RETURNING");
-  //       console.log(response);
-
   //       // const user = await response.json();
   //       setUserData(response);
   //     } catch (err) {
@@ -68,12 +65,11 @@ const SavedBooks = () => {
     try {
       const response = await removeBook({ variables: { bookId } });
 
-      if (!response.ok) {
+      if (!response.data) {
         throw new Error("something went wrong!");
       }
 
-      const updatedUser = await response.json();
-      setUserData(updatedUser);
+      setUserData(response);
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
